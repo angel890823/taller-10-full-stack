@@ -1,13 +1,25 @@
-<?php
-  function password($pass) {
-     
-    if (strlen($pass) < 8) {
-      return false;
-    } 
+<?php 
+  function hasSecurityLong($pass){
+    return strlen($pass) >= 8;
+  }
+  
+  function hasUpperLetter($pass){
+    $arrayPass = str_split($pass);
     
-    $tieneMayuscula = preg_match('/[A-Z]/', $pass); // Verificar si hay al menos una mayúscula
-    $tieneNumero = preg_match('/[0-9]/', $pass); // Verificar si hay al menos un número
+    foreach($arrayPass as $letter){
+      if(ctype_upper($letter)){
+        return true;
+      }
+    } return false; 
+  }
 
-    return $tieneMayuscula && $tieneNumero;
+  function hasNumber($pass){
+    $arrayPass = str_split($pass);
+
+    foreach($arrayPass as $letter){
+      if(is_numeric($letter)){
+        return true;
+      }
+    } return false; 
   }
 ?>
